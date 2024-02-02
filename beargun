@@ -1,0 +1,93 @@
+// Choices of user
+function getUserChoice(userInput) {
+    // Turn 'userInput' to lower case
+    userInput = userInput.toLowerCase();
+
+    if (userInput === 'bear' || userInput === 'human' || userInput === 'gun') {
+        return userInput;
+    } else {
+
+        return 'Please enter a valid option';
+    }
+}
+
+// Choices of the computer
+function getComputerChoice() {
+    var randomNumber = Math.floor(Math.random() * 3);
+
+    // Depending on the number, return bear, human, or gun
+    if (randomNumber === 0) {
+        return 'bear';
+    } else if (randomNumber === 1) {
+        return 'human';
+    } else if (randomNumber === 2) {
+        return 'gun';
+    }
+}
+
+
+// Matchmaking
+
+function determineWinner(userChoice, computerChoice) {
+
+    
+    // If both options are the same the game is a tie
+    if (userChoice === computerChoice){
+
+        return 'The game is a tie!';
+    }
+    
+// If userChoice is 'human' and computerChoice is 'bear', computer wins, otherwise human wins. 
+    if (userChoice === 'human'){
+
+        if (computerChoice === 'bear') {
+            return 'Computer wins!';
+        }
+
+        else {
+            return 'You win!';
+        }
+    }
+// If userChoice is 'bear' and computerChoice is 'gun', computer wins, otherwise human wins. 
+        else if (userChoice === 'bear'){
+
+        if (computerChoice === 'gun') {
+            return 'Computer wins!';
+        }
+
+        else {
+            return 'You win!';
+        }
+    }
+// If userChoice is 'Gun' and computerChoice is 'Human', computer wins, otherwise human wins. 
+        else if (userChoice === 'gun'){
+
+        if (computerChoice === 'human') {
+            return 'Computer wins!';
+        }
+
+        else {
+            return 'You win!';
+        }
+    }
+}
+
+function playGame() {
+    
+// let human choose from the 3 options
+    var promptUserChoice = prompt("Please choose bear, human or gun");
+ // format user choice to lower case and check for valid word
+    var userChoice = getUserChoice(promptUserChoice);
+    // computerChoice
+    var computerChoice = getComputerChoice();
+
+    console.log('Computer choose: ' + computerChoice)
+    console.log('You choose: ' + userChoice)
+// Determine the winner 
+
+    console.log(determineWinner(userChoice,computerChoice));
+
+}
+
+// call 'playGame' function
+playGame();
