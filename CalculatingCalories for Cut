@@ -1,0 +1,44 @@
+function calculateTDEE(weight, height, age, activityLevel) {
+    // Calculate BMR
+    var bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+    
+    // Define activity factors
+    var activityFactors = {
+        sedentary: 1.2,
+        lightlyActive: 1.375,
+        moderatelyActive: 1.55,
+        veryActive: 1.725,
+        extraActive: 1.9
+    };
+
+    // Calculate TDEE based on activity level
+    var tdee = bmr * activityFactors[activityLevel];
+
+    return tdee;
+}
+
+// Prompt user for activity level
+var activityLevel = prompt("Enter your activity level:\n\nSedentary (little to no exercise)\nLightly active (light exercise/sports 1-3 days/week)\nModerately active (moderate exercise/sports 3-5 days/week)\nVery active (hard exercise/sports 6-7 days a week)\nExtra active (very hard exercise/sports & physical job or 2x training)");
+
+activityLevel = activityLevel.toLowerCase();
+
+// Get user input for weight, height, and age
+var weight = parseFloat(prompt("Enter your weight in kg:"));
+var height = parseFloat(prompt("Enter your height in cm:"));
+var age = parseInt(prompt("Enter your age in years:"));
+
+// Check if user input is valid
+if (isNaN(weight) || isNaN(height) || isNaN(age)) {
+    alert("Invalid input. Please enter valid numbers.");
+} else {
+    // Calculate TDEE
+    var tdee = calculateTDEE(weight, height, age, activityLevel);
+
+    // Calculate calorie deficit for weight loss
+    var calorieDeficit = tdee - 500;
+    
+    // Display results
+    alert("Your TDEE is: " + tdee.toFixed(0) + " calories per day");
+    alert("To lose weight, you should ideally eat 500 calories less than your TDEE.");
+    alert("In your case, that would mean you should eat " + calorieDeficit.toFixed(0) + " calories.");
+}
