@@ -17,10 +17,39 @@ function calculateTDEE(weight, height, age, activityLevel) {
     return tdee;
 }
 
-// Prompt user for activity level
-var activityLevel = prompt("Enter your activity level:\n\nSedentary (little to no exercise)\nLightly active (light exercise/sports 1-3 days/week)\nModerately active (moderate exercise/sports 3-5 days/week)\nVery active (hard exercise/sports 6-7 days a week)\nExtra active (very hard exercise/sports & physical job or 2x training)");
+// Prompt user to select activity level
+var activityLevelString = "Select your activity level:\n\n";
+activityLevelString += "1. Sedentary (little to no exercise)\n";
+activityLevelString += "2. Lightly active (light exercise/sports 1-3 days/week)\n";
+activityLevelString += "3. Moderately active (moderate exercise/sports 3-5 days/week)\n";
+activityLevelString += "4. Very active (hard exercise/sports 6-7 days a week)\n";
+activityLevelString += "5. Extra active (very hard exercise/sports & physical job or 2x training)\n";
 
-activityLevel = activityLevel.toLowerCase();
+var activityLevelChoice = parseInt(prompt(activityLevelString + "\nEnter the number corresponding to your activity level:"));
+
+var activityLevel;
+switch (activityLevelChoice) {
+    case 1:
+        activityLevel = "sedentary";
+        break;
+    case 2:
+        activityLevel = "lightlyActive";
+        break;
+    case 3:
+        activityLevel = "moderatelyActive";
+        break;
+    case 4:
+        activityLevel = "veryActive";
+        break;
+    case 5:
+        activityLevel = "extraActive";
+        break;
+    default:
+        alert("Invalid choice. Please select a number between 1 and 5.");
+        break;
+}
+
+// Use the selected activity level to calculate TDEE...
 
 // Get user input for weight, height, and age
 var weight = parseFloat(prompt("Enter your weight in kg:"));
@@ -40,5 +69,5 @@ if (isNaN(weight) || isNaN(height) || isNaN(age)) {
     // Display results
     alert("Your TDEE is: " + tdee.toFixed(0) + " calories per day");
     alert("To lose weight, you should ideally eat 500 calories less than your TDEE.");
-    alert("In your case, that would mean you should eat " + calorieDeficit.toFixed(0) + " calories.");
+    alert("In your case, that would mean you should eat " + calorieDeficit.toFixed(0) + " calories per day to lose weight.");
 }
